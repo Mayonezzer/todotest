@@ -9,6 +9,11 @@ export function App() {
         {taskId: 1, taskTitle: "asd", isDone: true},
         {taskId: 2, taskTitle: "sdf", isDone: false},
         {taskId: 3, taskTitle: "fgh", isDone: false},
+        {taskId: 4, taskTitle: "fgh", isDone: false},
+        {taskId: 5, taskTitle: "fgh", isDone: false},
+        {taskId: 6, taskTitle: "fgh", isDone: false},
+        {taskId: 7, taskTitle: "fgh", isDone: false},
+        {taskId: 8, taskTitle: "fgh", isDone: false},
     ]
 
     return (
