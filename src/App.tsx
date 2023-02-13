@@ -16,9 +16,17 @@ export function App() {
         {taskId: 8, taskTitle: "fgh", isDone: false},
     ]
 
+    const removeTask = (id:number, myTitle: string)=>{
+        console.log(id, myTitle)
+    }
+
     return (
         <div className="App">
-            <TodoList title={todoListTitle} tasks={tasksList}/>
+            <TodoList
+                title={todoListTitle}
+                tasks={tasksList}
+                removeTask={removeTask}
+            />
         </div>
     );
 }
