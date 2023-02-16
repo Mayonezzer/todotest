@@ -3,10 +3,11 @@ import {ButtonNameType} from "./App";
 
 
 
+
 export type TodoListPropsType = {
     title: string
     tasks: Array<TaskPropsType>
-    removeTask: (game: number, myTitle: string) => void
+    removeTask: (id: number, myTitle: string) => void
     // filteringTasks: (ButtonName: ButtonNameType)=> void
 }
 
@@ -47,7 +48,7 @@ export function TodoList(props: TodoListPropsType) {
                         {filteredTasks.map((el) => {
                             return (
                                 <li key={el.taskId}>
-                                    <button onClick={() => props.removeTask(el.id, "Hello")}>X</button>
+                                    <button onClick={() => props.removeTask(el.taskId, "Hello")}>X</button>
                                     <input type="checkbox" checked={el.isDone}/>
                                     <span>{el.taskTitle}</span>
                                 </li>
