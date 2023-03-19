@@ -7,15 +7,13 @@ import {ButtonNameType} from "./App";
 export type TodoListPropsType = {
     title: string
     tasks: Array<TaskPropsType>
-    removeTask: (id: number, myTitle: string) => void
-    // filteringTasks: (ButtonName: ButtonNameType)=> void
+    removeTask: (id: number) => void
 }
 
 export type TaskPropsType = {
     taskId: number
     taskTitle: string
     isDone: boolean
-
 }
 
 export function TodoList(props: TodoListPropsType) {
@@ -28,7 +26,7 @@ export function TodoList(props: TodoListPropsType) {
 
     let filteredTasks = props.tasks
     if(filterTask==="Active") {
-        filteredTasks = props.tasks.filter(el => el.isDone)
+         filteredTasks = props.tasks.filter(t => t.isDone)
     }
     if (filterTask==="Completed") {
         filteredTasks = props.tasks.filter(el => !el.isDone)
@@ -42,23 +40,15 @@ export function TodoList(props: TodoListPropsType) {
                     <input/>
                     <button>+</button>
                 </div>
-                {props.tasks
-                    ?
-                    <ul>
-                        {filteredTasks.map((el) => {
-                            return (
-                                <li key={el.taskId}>
-                                    <button onClick={() => props.removeTask(el.taskId, "Hello")}>X</button>
-                                    <input type="checkbox" checked={el.isDone}/>
-                                    <span>{el.taskTitle}</span>
-                                </li>
-                            )
-                        })}
-                    </ul>
-                    :
-                    <div>нету</div>
-                }
-
+                {filteredTasks.map( (t) => {
+                    return (
+                        <li >
+                            <button onClick={() => {props.removeTask(t.taskId)}}>X</button>
+                            <input type="checkbox" checked={t.isDone}/>
+                            <span>{t.taskTitle}</span>
+                        </li>
+                    )
+                } )}
                 <div>
                     <button onClick={()=>{filteringTasks('All')}}>All</button>
                     <button onClick={()=>{filteringTasks('Active')}}>Active</button>
@@ -68,4 +58,6 @@ export function TodoList(props: TodoListPropsType) {
         </div>
     );
 };
+
+
 

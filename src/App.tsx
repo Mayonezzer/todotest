@@ -16,24 +16,11 @@ export function App() {
         {taskId: 4, taskTitle: "ReactJS", isDone: false},
     ])
 
-    let removeTask = (id: number, myTitle: string) => {
-        tasksList = tasksList.filter((el) => el.taskId !== id)
+    let removeTask = (id: number) => {
+        tasksList = tasksList.filter((t) => t.taskId !== id)
         setTasksList(tasksList)
     }
 
-    // let [filterTask, setFilterTask] = useState<ButtonNameType>('All')
-    //
-    // const filteringTasks = (buttonName: ButtonNameType) => {
-    //     setFilterTask(buttonName)
-    // }
-    //
-    // let filteredTasks = tasksList
-    // if(filterTask==="Active") {
-    //     filteredTasks = tasksList.filter(el => el.isDone)
-    // }
-    // if (filterTask==="Completed") {
-    //     filteredTasks = tasksList.filter(el => !el.isDone)
-    // }
 
 
     return (
@@ -42,7 +29,6 @@ export function App() {
                 title={todoListTitle}
                 tasks={tasksList}
                 removeTask={removeTask}
-                // filteringTasks = {filteringTasks}
             />
         </div>
     );
