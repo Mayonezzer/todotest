@@ -25,10 +25,10 @@ export function TodoList(props: TodoListPropsType) {
     }
 
     let filteredTasks = props.tasks
-    if(filterTask==="Active") {
-         filteredTasks = props.tasks.filter(t => t.isDone)
+    if (filterTask === "Active") {
+        filteredTasks = props.tasks.filter(t => t.isDone)
     }
-    if (filterTask==="Completed") {
+    if (filterTask === "Completed") {
         filteredTasks = props.tasks.filter(el => !el.isDone)
     }
 
@@ -40,24 +40,36 @@ export function TodoList(props: TodoListPropsType) {
                     <input/>
                     <button>+</button>
                 </div>
-                {filteredTasks.map( (t) => {
+                {filteredTasks.map((t) => {
                     return (
-                        <li >
-                            <button onClick={() => {props.removeTask(t.taskId)}}>X</button>
+                        <li>
+                            <button onClick={() => {
+                                props.removeTask(t.taskId)
+                            }}>X
+                            </button>
                             <input type="checkbox" checked={t.isDone}/>
                             <span>{t.taskTitle}</span>
                         </li>
                     )
-                } )}
+                })}
                 <div>
-                    <button onClick={()=>{filteringTasks('All')}}>All</button>
-                    <button onClick={()=>{filteringTasks('Active')}}>Active</button>
-                    <button onClick={()=>{filteringTasks('Completed')}}>Completed</button>
+                    <button onClick={() => {
+                        filteringTasks('All')
+                    }}>All
+                    </button>
+                    <button onClick={() => {
+                        filteringTasks('Active')
+                    }}>Active
+                    </button>
+                    <button onClick={() => {
+                        filteringTasks('Completed')
+                    }}>Completed
+                    </button>
                 </div>
             </div>
         </div>
     );
-};
+}
 
 
 
