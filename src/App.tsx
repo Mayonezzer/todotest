@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import './App.css';
 import {TodoList} from "./TodoList";
 import {TaskPropsType} from "./TodoList";
+import {v1} from "uuid";
 
 
 export type ButtonNameType = 'All' | 'Active' | 'Completed'
@@ -9,16 +10,22 @@ export type ButtonNameType = 'All' | 'Active' | 'Completed'
 
 export function App() {
     const todoListTitle: string = "what to learn"
-    let [tasksList, setTasksList] = useState<Array<TaskPropsType>>( [
-        {taskId: 1, taskTitle: "html&css", isDone: true},
-        {taskId: 2, taskTitle: "JS", isDone: true},
-        {taskId: 3, taskTitle: "notJS", isDone: true},
-        {taskId: 4, taskTitle: "ReactJS", isDone: false},
+    let [tasks, setTasks] = useState<Array<TaskPropsType>>( [
+        {taskId: v1(), taskTitle: "html&css", isDone: true},
+        {taskId: v1(), taskTitle: "JS", isDone: true},
+        {taskId: v1(), taskTitle: "notJS", isDone: true},
+        {taskId: v1(), taskTitle: "ReactJS", isDone: false},
     ])
 
-    let removeTask = (id: number) => {
-        tasksList = tasksList.filter((t) => t.taskId !== id)
-        setTasksList(tasksList)
+    const removeTask = (id: string) => {
+        tasks = tasks.filter((t) => t.taskId !== id)
+        setTasks(tasks)
+    }
+
+    const addTask = (inputTitlePar: string) => {
+        const addedTask = {taskId: v1(), taskTitle: inputTitlePar, isDone: true};
+        const newTasks = [addedTask, ...tasks]
+        setTasks(newTasks)
     }
 
 
@@ -27,8 +34,9 @@ export function App() {
         <div className="App">
             <TodoList
                 title={todoListTitle}
-                tasks={tasksList}
+                tasks={tasks}
                 removeTask={removeTask}
+                addTask = {addTask}
             />
         </div>
     );
