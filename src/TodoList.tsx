@@ -69,11 +69,14 @@ export function TodoList(props: TodoListPropsType) {
                 <div>
                     <input value={inpTitle}
                            onKeyDown={onKeyPressInputHandler}
-                           onChange={onChangeInputHandler}/>
+                           onChange={onChangeInputHandler}
+                           placeholder={'enter inpTitle please'}/>
                     <button
+                        disabled={inpTitle.length === 0 || inpTitle.length > 10}
                         onClick={onClickInputHandler}>
                         +
                     </button>
+                    {inpTitle.length > 10 && <div>title is too long</div>}
                 </div>
                 {mappedTasks}
                 <div>
