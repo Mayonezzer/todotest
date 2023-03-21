@@ -25,7 +25,16 @@ export function App() {
     const addTask = (inputTitlePar: string) => {
         const addedTask = {taskId: v1(), taskTitle: inputTitlePar, isDone: true};
         const newTasks = [addedTask, ...tasks]
-        setTasks(newTasks)
+        setTasks(newTasks) // либо сразу setTasks([addedTask, ...tasks])
+    }
+
+    const changeStatus = (idFind: string, isDone: boolean) => {
+        let taskFind = tasks.find( (t) => t.taskId === idFind) // ? true : false
+        if (taskFind) {
+            taskFind.isDone = isDone
+        }
+        let copyTasks = [...tasks]
+        setTasks(copyTasks) // или сразу setTasks([...tasks])
     }
 
 
@@ -37,6 +46,7 @@ export function App() {
                 tasks={tasks}
                 removeTask={removeTask}
                 addTask = {addTask}
+                changeStatus={changeStatus}
             />
         </div>
     );
